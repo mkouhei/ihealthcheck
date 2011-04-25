@@ -8,6 +8,9 @@ address {
 	font-size: xx-small;
         font-style: normal;
 }
+#footnote {
+    font-size: xx-small;
+}
 #navi li {
     display: inline;
     list-style-type: none;

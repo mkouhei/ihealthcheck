@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}sample{% endblock %}</title>
+    <link type="text/css" rel="stylesheet" href="/static/main.css" />
+    <link type="text/css" rel="stylesheet" href="/static/jquery.mobile-1.0a4.1.min.css"/>
+    <script type="text/javascript" src="/static/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="/static/jquery.mobile-1.0a4.1.min.js"></script>
+    {% block jqplot %}{% endblock %}
+   </head>
+  <body>
+    <div data-role="page" id="index">
+      <div data-role="header">
+	<h1>{% block h1-index %}{% endblock %}</h1>
+	<a href="{{url}}" rel="external" class="ui-btn-right" data-role="button" >{{url_linktext}}</a>
+      </div>
+      <div data-role="content">
+	{% block content-index %}{% endblock %}
+	{% if user %}
+	<ul data-role="listview">
+	  <li><a href="#first">{% block linktext-first %}{% endblock %}</a></li>
+	  <li><a href="#second">{% block linktext-second %}{% endblock %}</a></li>
+	</ul>
+	{% endif %}
+      </div>
+      <div data-role="footer">
+	<div data-role="navbar">
+	  <ul>
+	{% if user %}
+	    <li><a href="/listBodyCompost">体組成計測履歴</a></li>
+	    <li><a href="/listPedometer">歩数計履歴</a></li>
+	{% endif %}
+	  </ul>
+	</div>
+	<address>&copy; 2011 Kouhei Maeda</address>
+      </div>
+    </div>
+    <div data-role="page" id="first">
+      <div data-role="header">
+	<h1>{% block h1-first %}{% endblock %}</h1>
+	<a href="{{url}}" rel="external" class="ui-btn-right" data-role="button" data-icon="minus">{{url_linktext}}</a>
+      </div>
+      <div data-role="content">
+	{% block content-first %}
+	{% endblock %}
+      </div>
+      <div data-role="footer">
+	{% if user %}
+	<div data-role="navbar">
+	  <ul>
+	{% if user %}
+	    <li><a href="/listBodyCompost">体組成計測履歴</a></li>
+	    <li><a href="/listPedometer">歩数計履歴</a></li>
+	{% endif %}
+	    <li><a href="{{url}}" rel="external">{{url_linktext}}</a></li>
+	  </ul>
+	</div>
+	{% endif %}
+	<address>&copy; 2011 Kouhei Maeda</address>
+      </div>
+    </div>
+
+    <div data-role="page" id="second">
+      <div data-role="header">
+	<h1>{% block h1-second %}{% endblock %}</h1>
+	<a href="{{url}}" rel="external" class="ui-btn-right" data-role="button" data-icon="minus">{{url_linktext}}</a>
+      </div>
+      <div data-role="content">
+	{% block content-second %}
+	{% endblock %}
+      </div>
+      <div data-role="footer">
+	{% if user %}
+	<div data-role="navbar">
+	  <ul>
+	    {% if user %}
+	    <li><a href="/listBodyCompost">体組成計測履歴</a></li>
+	    <li><a href="/listPedometer">歩数計履歴</a></li>
+	    {% endif %}
+	    <li><a href="{{url}}" rel="external">{{url_linktext}}</a></li>
+	  </ul>
+	</div>
+	{% endif %}
+	<address>&copy; 2011 Kouhei Maeda</address>
+      </div>
+    </div>
+  </body>
+</html>
+

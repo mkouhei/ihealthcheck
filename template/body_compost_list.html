@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}{{nickname}}さんの体組成計測履歴{% endblock %}
+{% block h1 %}{{nickname}}さんの体組成計測履歴{% endblock %}
+{% block content %}
+	<table>
+	  <thead>
+	    <tr>
+	      <td>日時</td>
+	      <td>体重(kg)</td>
+	      <td>BMI</td>
+	      <td>体脂肪率(%)</td>
+	      <td>骨格筋率(%)</td>
+	      <td>基礎代謝(kcal)</td>
+	      <td>内臓脂肪レベル</td>
+	      <td>体年齢(歳)</td>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  {% for body_compost in body_composts %}
+	    <tr>
+	      <td>{{body_compost.measure_datetime}}</td>
+	      <td>{{body_compost.weight}}</td>
+	      <td>{{body_compost.bmi}}</td>
+	      <td>{{body_compost.bodyfat_percentage}}</td>
+	      <td>{{body_compost.skeltal_mascle_percentage}}</td>
+	      <td>{{body_compost.basal_metabolism}}</td>
+	      <td>{{body_compost.bodyfat_lv}}</td>
+	      <td>{{body_compost.body_age}}</td>
+	    </tr>
+	  {% endfor %}
+	  </tbody>
+	</table>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{nickname}}さんの体組成計測履歴グラフ{% endblock %}
+{% block h1 %}{{nickname}}さんの体組成計測履歴グラフ{% endblock %}
+
+{% block jqplot %}
+    <script type="text/javascript" src="static/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.dateAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.highlighter.min.js"></script>
+    <script type="text/javascript" src="static/plugins/jqplot.cursor.min.js"></script>
+{% endblock %}
+
+      <div data-role="content">
+{% block content %}
+	<div id="hoge" style="width: 200; height: 300;"></div>
+      </div>
+{% endblock %}
+

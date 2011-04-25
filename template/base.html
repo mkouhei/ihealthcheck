@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}sample{% endblock %}</title>
+    <link type="text/css" rel="stylesheet" href="/static/main.css" />
+    <link type="text/css" rel="stylesheet" href="/static/jquery.mobile-1.0a4.1.min.css"/>
+    <script type="text/javascript" src="/static/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="/static/jquery.mobile-1.0a4.1.min.js"></script>
+    {% block jqplot %}{% endblock %}
+   </head>
+  <body>
+    <div data-role="page">
+      <div data-role="header">
+	<h1>{% block h1 %}{% endblock %}</h1>
+	<a href="{{url}}" rel="external" class="ui-btn-right" data-role="button" >{{url_linktext}}</a>
+      </div>
+      <div data-role="content">
+	{% block content %}{% endblock %}
+      </div>
+      <div data-role="footer">
+	{% if user %}
+	<div data-role="navbar">
+	  <ul>
+	    <li><a href="/" data-icon="home" rel="external" data-transition="fade">Home</a></li>
+	    <li><a href="/listBodyCompost">体組成計測履歴</a></li>
+	    <li><a href="/listPedometer">歩数計履歴</a></li>
+	  </ul>
+	</div>
+	{% endif %}
+	<address>&copy; 2011 Kouhei Maeda</address>
+      </div>
+    </div>
+  </body>
+</html>
+

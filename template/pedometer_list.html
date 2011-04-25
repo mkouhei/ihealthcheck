@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{nickname}}さんの歩数計履歴{% endblock %}
+{% block h1 %}{{nickname}}さんの歩数計履歴{% endblock %}
+{% block content %}
+	<table>
+	  <thead>
+	    <tr>
+	      <td>日付</td>
+	      <td>歩数</td>
+	      <td>しっかり歩数</td>
+	      <td>Ex歩数</td>
+	      <td>歩行距離(km)</td>
+	      <td>歩行時間(分)</td>
+	      <td>しっかり歩行時間(分)</td>
+	      <td>Ex量(Ex)</td>
+	      <td>消費カロリー(kcal)</td>
+	      <td>脂肪燃焼量(g)</td>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  {% for listPedometer in listPedometers %}
+	    <tr>
+	      <td>{{listPedometer.measure_datetime}}</td>
+	      <td>{{listPedometer.number_steps}}</td>
+	      <td>{{listPedometer.suff_steps}}</td>
+	      <td>{{listPedometer.ex_steps}}</td>
+	      <td>{{listPedometer.distance}}</td>
+	      <td>{{listPedometer.walk_mins}}</td>
+	      <td>{{listPedometer.suff_mins}}</td>
+	      <td>{{listPedometer.ex}}</td>
+	      <td>{{listPedometer.cal}}</td>
+	      <td>{{listPedometer.bodyfat_quantity}}</td>
+	    </tr>
+	  {% endfor %}
+	  </tbody>
+	</table>
+{% endblock %}

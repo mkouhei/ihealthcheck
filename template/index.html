@@ -1,0 +1,46 @@
+{% extends "base-doublepage.html" %}
+
+{% block titile %}myhealth Home {% endblock %}
+{% block h1-index%}myhealth Home {% endblock %}
+{% block content-index %}
+<h2>About</h2>
+<p>オムロンのWellnessLINKの体組成計や歩数計で記録したデータを管理するために作成しました。<a href="#footnote0">※1</a> なお、データの登録はGoogle Accountでのログインが必要ですが、JSON APIでのデータ取得は今のところユーザ名が分かれば誰でも取得できるようになっていますので、データの登録の際はその点を納得の上ご利用ください。</p>
+
+<p class="footnote" id="#footnote0">WellnessLINKのデータ保管期間が半年のため。</p>
+{% endblock %}
+{% block linktext-first %}体組成入力{% endblock %}
+{% block linktext-second %}歩数計入力{% endblock %}
+
+{% block h1-first %}体組成入力{% endblock %}
+{% block content-first %}
+<form action="/registBodyCompost" method="post">
+  <label>日付<input type="datetime" name="measure_datetime" /></label>
+  <label>時刻<input type="time" name="measure_time" /></label>
+  <label>体重(kg)<input type="text" name="weight" /></label>
+  <label>BMI<input type="text" name="bmi" /></label>
+  <label>体脂肪率(%)<input type="text" name="bodyfat_percentage" /></label>
+  <label>骨格筋率(%)<input type="text" name="skeltal_mascle_percentage" /></label>
+  <label>基礎代謝(kcal)<input type="number" name="basal_metabolism" /></label>
+  <label>内臓脂肪レベル<input type="number" name="bodyfat_lv" /></label>
+  <label>体年齢<input type="number" name="body_age" /></label>
+  <input type="submit" value="登録"/>
+</form>
+{% endblock %}
+
+{% block h1-second %}歩数計入力{% endblock %}
+{% block content-second %}
+<form action="/registPedometer" method="post">
+  <label>日付<input type="datetime" name="measure_datetime" /></label>
+  <label>歩数<input type="number" name="number_steps" /></label>
+  <label>しっかり歩数<input type="number" name="suff_steps" /></label>
+  <label>歩行距離(km)<input type="text" name="distance" /></label>
+  <label>Ex歩数<input type="number" name="ex_steps" /></label>
+  <label>歩行時間(分)<input type="number" name="walk_mins" /></label>
+  <label>しっかり歩行時間(分)<input type="number" name="suff_mins" /></label>
+  <label>Ex量(Ex)<input type="text" name="ex" /></label>
+  <label>消費カロリー(kcal)<input type="number" name="cal" /></label>
+  <label>脂肪燃焼量<input type="text" name="bodyfat_quantity" /></label>
+  <input type="submit" value="登録"/>
+</form>
+{% endblock %}
+

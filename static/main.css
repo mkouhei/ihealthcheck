@@ -1,0 +1,36 @@
+body {
+    color:black;
+    background-color:white;
+    font-size:normal; 
+    font-family:verdana, arial, helvetica, Sans-Serif;
+}
+address {   
+	font-size: xx-small;
+        font-style: normal;
+}
+#navi li {
+    display: inline;
+    list-style-type: none;
+}
+dt {
+    background-color: #ddd;
+}
+input {
+    box-shadow: 0;
+}
+label, textarea {
+    display: block;
+}
+label, thead td, dt {
+    font-weight: bold;
+    font-size: small;
+}
+tr:first {
+    background-color: #bbf;
+}
+tbody tr:odd {
+    background-color: #ddd;
+}
+
+
+

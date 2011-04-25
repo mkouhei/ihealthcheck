@@ -1,0 +1,23 @@
+application: ihealthcheck
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+
+- url: /static
+  static_dir: static
+
+- url: /sample
+  static_dir: sample
+  
+- url: /(regist).*
+  script: dispatch.py
+  login: required
+
+- url: /api/(bodyCompost|pedometer)
+  script: dispatch.py
+
+- url: /.*
+  script: dispatch.py
+

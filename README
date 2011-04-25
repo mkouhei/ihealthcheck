@@ -1,0 +1,34 @@
+iHealthCheck
+------------
+
+Recording your body composition and pedometer, and draw graph.
+
+Feature:
+ - This application is for GAE/Python.
+ - You record body composition and pedometer.
+ - You list registered data.
+ - You retrieve registered data in JSON format.
+ - You see graph of data.
+	
+JSON API:
+ - Body composition data
+   	http://<yourappid>.appspot.com/api/bodyCompost/<username>
+ - Pedometer data	  
+   	http://<yourappid>.appspot.com/api/pedometer/<username>
+
+Graph:
+ This function is implemented by jqplot.
+ First change var uri in JavaScript files.
+ These files; static/(body_compost|pedometer).js
+
+ You access next URI to see graph.
+
+ - Body composition data
+   	http://<yourappid>.appspot.com/static/body_compost.html
+ - Pedometer data
+   	http://<yourappid>.appspot.com/static/pedometer.html
+
+Warning:
+ - JSON API & Graph can be accessed by anyone who knows the username.
+
+ -- Kouhei Maeda <mkouhei at palmtb.net>, Mon, 25 Apr 2011 22:56:47 +0900

@@ -26,7 +26,7 @@ class DataApi(webapp.RequestHandler):
         else:
             json_data = self.renderJson(user)
             if not memcache.add(self.key, json_data, 10):
-                loggin.error("Memcache set failed.")
+                logging.error("Memcache set failed.")
             return json_data
 
 

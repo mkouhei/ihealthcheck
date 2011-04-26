@@ -11,7 +11,7 @@ handlers:
 - url: /sample
   static_dir: sample
   
-- url: /(regist).*
+- url: /(regist|list).*
   script: dispatch.py
   login: required
 

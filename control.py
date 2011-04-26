@@ -18,6 +18,15 @@ class ListMeasurement(webapp.RequestHandler):
         userinfo_query = UserInfo.all().filter('ownerid =',self.user)
         self.userinfo = userinfo_query.get()
 
+        if self.userinfo is None:
+            userinfo = UserInfo()
+            userinfo.ownerid = self.user
+
+        self.template_values = {
+            'user' : self.user,
+            'nickname' : self.user.nickname(),
+            }
+
 class ListBodyCompost(ListMeasurement):
     def __init__(self):
         ListMeasurement.__init__(self)
@@ -27,18 +36,9 @@ class ListBodyCompost(ListMeasurement):
         body_compost_query = BodyCompost.all().order('-measure_datetime')
         body_composts = body_compost_query.filter('username =',str(self.user.nickname()))
 
-        ListMeasurement.__init__(self)
-        if self.userinfo is None:
-            userinfo = UserInfo()
-            userinfo.ownerid = self.user
-
-        template_values = {
-            'body_composts' : body_composts,
-            'user' : self.user,
-            'nickname' : self.user.nickname(),
-            }
+        self.template_values['body_composts'] = body_composts
         path = os.path.join(os.path.dirname(__file__), 'template/body_compost_list.html')
-        self.response.out.write(template.render(path, template_values))
+        self.response.out.write(template.render(path, self.template_values))
 
 class ListPedometer(ListMeasurement):
     def __init__(self):
@@ -49,17 +49,9 @@ class ListPedometer(ListMeasurement):
         listPedometer_query = Pedometer.all().order('-measure_datetime')
         listPedometers = listPedometer_query.filter('username =',str(self.user.nickname()))
 
-        if self.userinfo is None:
-            userinfo = UserInfo()
-            userinfo.ownerid = self.user
-
-        template_values = {
-            'listPedometers' : listPedometers,
-            'user' : self.user,
-            'nickname' : self.user.nickname(),
-            }
+        self.template_values['listPedometers'] = listPedometers
         path = os.path.join(os.path.dirname(__file__), 'template/pedometer_list.html')
-        self.response.out.write(template.render(path, template_values))
+        self.response.out.write(template.render(path, self.template_values))
 
 
 class RegistBodyCompost(webapp.RequestHandler):

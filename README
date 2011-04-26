@@ -16,19 +16,19 @@ JSON API:
  - Pedometer data	  
    	http://<yourappid>.appspot.com/api/pedometer/<username>
 
-Graph:
+Sample Graph:
  This function is implemented by jqplot.
- First change var uri in JavaScript files.
- These files; static/(body_compost|pedometer).js
+ Firstly, change var uri in JavaScript files.
+ These files; sample/(body_compost|pedometer).js
 
- You access next URI to see graph.
+ You access next URI to see samplegraph.
 
  - Body composition data
-   	http://<yourappid>.appspot.com/static/body_compost.html
+   	http://<yourappid>.appspot.com/sample/body_compost.html
  - Pedometer data
-   	http://<yourappid>.appspot.com/static/pedometer.html
+   	http://<yourappid>.appspot.com/sample/pedometer.html
 
 Warning:
  - JSON API & Graph can be accessed by anyone who knows the username.
 
- -- Kouhei Maeda <mkouhei at palmtb.net>, Mon, 25 Apr 2011 22:56:47 +0900
+ -- Kouhei Maeda <mkouhei at palmtb.net>, Mon, 26 Apr 2011 12:34:47 +0900

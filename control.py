@@ -11,6 +11,7 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 from google.appengine.ext.webapp.util import run_wsgi_app
+from google.appengine.api import memcache
 
 class ListMeasurement(webapp.RequestHandler):
     def __init__(self):
@@ -27,31 +28,48 @@ class ListMeasurement(webapp.RequestHandler):
             'nickname' : self.user.nickname(),
             }
 
+        key = ""
+        template_path = ""
+
+    def get(self):
+        self.lists_data = self.getList()
+        self.stats = memcache.get_stats()
+        path = os.path.join(os.path.dirname(__file__), self.template_path)
+        self.response.out.write(template.render(path, self.lists_data))
+        
+    def getList(self):
+        lists_data = memcache.get(self.key)
+ 
+        if lists_data is not None:
+            return lists_data
+        else:
+            lists_data = self.renderList()
+            if not memcache.add(self.key, lists_data, 10):
+                logging.error("Memcache set failed.")
+            return lists_data
+
 class ListBodyCompost(ListMeasurement):
     def __init__(self):
         ListMeasurement.__init__(self)
-        
-    def get(self):
-        # Google Accountをキーに、体組成の一覧を表示する。
-        body_compost_query = BodyCompost.all().order('-measure_datetime')
-        body_composts = body_compost_query.filter('username =',str(self.user.nickname()))
+        self.key = "listBodyCompost"
+        self.template_path = "template/body_compost_list.html"
 
+    def renderList(self):
+        body_composts = BodyCompost.all().filter('username =', str(self.user.nickname())).order('-measure_datetime')
         self.template_values['body_composts'] = body_composts
-        path = os.path.join(os.path.dirname(__file__), 'template/body_compost_list.html')
-        self.response.out.write(template.render(path, self.template_values))
+        return self.template_values
+        
 
 class ListPedometer(ListMeasurement):
     def __init__(self):
         ListMeasurement.__init__(self)
+        self.key = "listPedometer"
+        self.template_path = "template/pedometer_list.html"
         
-    def get(self):
-        # Google Accountをキーに、歩数計の一覧を表示する。
-        listPedometer_query = Pedometer.all().order('-measure_datetime')
-        listPedometers = listPedometer_query.filter('username =',str(self.user.nickname()))
-
-        self.template_values['listPedometers'] = listPedometers
-        path = os.path.join(os.path.dirname(__file__), 'template/pedometer_list.html')
-        self.response.out.write(template.render(path, self.template_values))
+    def renderList(self):
+        pedometers = Pedometer.all().filter('username =',str(self.user.nickname())).order('-measure_datetime')
+        self.template_values['pedometers'] = pedometers
+        return self.template_values
 
 
 class RegistBodyCompost(webapp.RequestHandler):

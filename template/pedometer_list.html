@@ -19,18 +19,18 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	  {% for listPedometer in listPedometers %}
+	  {% for pedometer in pedometers %}
 	    <tr>
-	      <td>{{listPedometer.measure_datetime}}</td>
-	      <td>{{listPedometer.number_steps}}</td>
-	      <td>{{listPedometer.suff_steps}}</td>
-	      <td>{{listPedometer.ex_steps}}</td>
-	      <td>{{listPedometer.distance}}</td>
-	      <td>{{listPedometer.walk_mins}}</td>
-	      <td>{{listPedometer.suff_mins}}</td>
-	      <td>{{listPedometer.ex}}</td>
-	      <td>{{listPedometer.cal}}</td>
-	      <td>{{listPedometer.bodyfat_quantity}}</td>
+	      <td>{{pedometer.measure_datetime}}</td>
+	      <td>{{pedometer.number_steps}}</td>
+	      <td>{{pedometer.suff_steps}}</td>
+	      <td>{{pedometer.ex_steps}}</td>
+	      <td>{{pedometer.distance}}</td>
+	      <td>{{pedometer.walk_mins}}</td>
+	      <td>{{pedometer.suff_mins}}</td>
+	      <td>{{pedometer.ex}}</td>
+	      <td>{{pedometer.cal}}</td>
+	      <td>{{pedometer.bodyfat_quantity}}</td>
 	    </tr>
 	  {% endfor %}
 	  </tbody>

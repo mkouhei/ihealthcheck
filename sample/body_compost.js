@@ -97,9 +97,9 @@ $(function() {
 			       arr_bodyfat_lv,
 			       arr_basal_metabolism
 			   ],
-			   { legend:{show:true, location:'e'},
+			   { legend:{show:false},
 			     title:'体組成計測',
-			     seriesDefaults: {showMarker:true},
+			     seriesDefaults: {showMarker:false},
 			     series:[{label:'体年齢', yaxis:'yaxis'},
 				     {label:'体重', yaxis:'y2axis'},
 				     {label:'体脂肪率', yaxis:'y3axis'},
@@ -125,7 +125,7 @@ $(function() {
 					  },
 					  label:'日時(UTC)',
 					 },
-				   yaxis:{label:'体年齢(歳)',tickOptions:{formatString:'%d'}},
+				   yaxis:{label:'体年齢(歳)',tickOptions:{formatString:'%d',showGridline:false}},
 				   y2axis:{label:'体重(kg)'},
 				   y3axis:{label:'体脂肪率(%)'},
 				   y4axis:{label:'骨格筋率(%)'},
@@ -136,9 +136,10 @@ $(function() {
 			     cursor: {
 				 showVerticalLine: true,
 				 showHorizontalLine: false,
-				 showCursorLegend: true,
+				 showCursorLegend: false,
 				 showTooltip: false
-			     }
+			     },
+			     highlighter: {show: true }
 			   });
 	      });
 }); 

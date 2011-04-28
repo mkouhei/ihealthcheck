@@ -108,9 +108,9 @@ $(function() {
 			       arr_cal,
 			       arr_bodyfat_quantity
 			   ],
-			   { legend:{show:true, location:'e'},
+			   { legend:{show:false},
 			     title:'歩数計',
-			     seriesDefault: {showMarker:true},
+			     seriesDefaults: {showMarker:false},
 			     series:[{label:'歩数', yaxis:'yaxis'},
 				     {label:'しっかり歩数', yaxis:'y2axis'},
 				     {label:'EX歩数', yaxis:'y3axis'},
@@ -150,9 +150,10 @@ $(function() {
 			     cursor: {
 				 showVerticalLine: true,
 				 showHorizontalLine: false,
-				 showCursorLegend: true,
+				 showCursorLegend: false,
 				 showTooltip: false
-			     }
+			     },
+			     highlighter: {show:true}
 			   });
 	      });
 }); 

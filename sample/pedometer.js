@@ -108,17 +108,18 @@ $(function() {
 			       arr_suff_steps,
 			       arr_ex
 			   ],
-			   { title:'歩数計',
-			     seriesDefault: {showMarker:false},
-			     series:[{yaxis:'yaxis'},
-				     {yaxis:'y2axis'},
-				     {yaxis:'y3axis'},
-				     {yaxis:'y4axis'},
-				     {yaxis:'y5axis'},
-				     {yaxis:'y6axis'},
-				     {yaxis:'y7axis'},
-				     {yaxis:'y8axis'},
-				     {yaxis:'y9axis'}
+			   { legend:{show:true, location:'e'},
+			     title:'歩数計',
+			     seriesDefault: {showMarker:true},
+			     series:[{label:'距離', yaxis:'yaxis'},
+				     {label:'歩行時間', yaxis:'y2axis'},
+				     {label:'EX歩数', yaxis:'y3axis'},
+				     {label:'歩数', yaxis:'y4axis'},
+				     {label:'しっかり歩行時間', yaxis:'y5axis'},
+				     {label:'消費カロリー', yaxis:'y6axis'},
+				     {label:'燃焼脂肪量', yaxis:'y7axis'},
+				     {label:'しっかり歩数', yaxis:'y8axis'},
+				     {label:'EX量', yaxis:'y9axis'}
 				    ],
 	                     axesDefaults: {
 				 useSeriesColor: true,
@@ -127,8 +128,15 @@ $(function() {
 				 labelOptions:{fontSize:'xx-small'}
 			     },
 	                     axes:{xaxis:{renderer: $.jqplot.DateAxisRenderer,
-					  label:'日付(UTC)',
-					  tickOptions:{formatString:'%#m/%#d'}},
+					  tickInterval:'1 day',
+					  tickOptions:{
+					      formatString:'%#m/%#d',
+					      fontSize:'10px',
+					      fontFamily:'Tahoma',
+					      angle:-30
+					  },
+					  label:'日付(UTC)'
+					 },
 				   yaxis:{label:'距離(km)'},
 				   y2axis:{label:'歩行時間(分)',tickOptions:{formatString:'%d'}},
 				   y3axis:{label:'EX歩数',tickOptions:{formatString:'%d'}},
@@ -138,7 +146,13 @@ $(function() {
 				   y7axis:{label:'燃焼脂肪量(g)'},
 				   y8axis:{label:'しっかり歩数',tickOptions:{formatString:'%d'}},
 				   y9axis:{label:'EX量(Ex)'}
-				  }
+				  },
+			     cursor: {
+				 showVerticalLine: true,
+				 showHorizontalLine: false,
+				 showCursorLegend: true,
+				 showTooltip: false
+			     }
 			   });
 	      });
 }); 

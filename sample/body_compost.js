@@ -97,15 +97,16 @@ $(function() {
 			       arr_bodyfat_lv,
 			       arr_basal_metabolism
 			   ],
-			   { title:'体組成計測',
-			     seriesDefault: {showMarker:false},
-			     series:[{yaxis:'yaxis'},
-				     {yaxis:'y2axis'},
-				     {yaxis:'y3axis'},
-				     {yaxis:'y4axis'},
-				     {yaxis:'y5axis'},
-				     {yaxis:'y6axis'},
-				     {yaxis:'y7axis'}
+			   { legend:{show:true, location:'e'},
+			     title:'体組成計測',
+			     seriesDefaults: {showMarker:true},
+			     series:[{label:'体年齢', yaxis:'yaxis'},
+				     {label:'体重', yaxis:'y2axis'},
+				     {label:'体脂肪率', yaxis:'y3axis'},
+				     {label:'骨格筋率', yaxis:'y4axis'},
+				     {label:'BMI', yaxis:'y5axis'},
+				     {label:'体脂肪レベル', yaxis:'y6axis'},
+				     {label:'基礎代謝', yaxis:'y7axis'}
 				    ],
 	                     axesDefaults: {
 				 useSeriesColor: true,
@@ -114,8 +115,16 @@ $(function() {
 				 labelOptions:{fontSize:'xx-small'}
 			     },
 	                     axes:{xaxis:{renderer: $.jqplot.DateAxisRenderer,
+					  tickInterval: '1 day',
+					  rendererOptions:{tickRenderer:$.jqplot.CanvasAxisTickRenderer},
+					  tickOptions:{
+					      formatString:'%#m/%#d',
+					      fontSize:'10px',
+					      fontFamily:'Tahoma',
+					      angle:-30
+					  },
 					  label:'日時(UTC)',
-					  tickOptions:{formatString:'%#m/%#d'}},
+					 },
 				   yaxis:{label:'体年齢(歳)',tickOptions:{formatString:'%d'}},
 				   y2axis:{label:'体重(kg)'},
 				   y3axis:{label:'体脂肪率(%)'},
@@ -123,7 +132,13 @@ $(function() {
 				   y5axis:{label:'BMI'},
 				   y6axis:{label:'体脂肪レベル',tickOptions:{formatString:'%d'}},
 				   y7axis:{label:'基礎代謝(kcal)',tickOptions:{formatString:'%d'}}
-				  }
+				  },
+			     cursor: {
+				 showVerticalLine: true,
+				 showHorizontalLine: false,
+				 showCursorLegend: true,
+				 showTooltip: false
+			     }
 			   });
 	      });
 }); 

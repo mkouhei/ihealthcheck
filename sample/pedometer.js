@@ -83,17 +83,16 @@ $(function() {
 		  var arr_ex = new Array(epoch.length);
 		  var arr_datetime = new Array(epoch.length);
 		  for(var i = 0; i < epoch.length; i++) {
-		      arr_distance[i] = [epoch[i], distance[i]];
-		      arr_walk_mins[i] = [epoch[i], walk_mins[i]];
-		      arr_ex_steps[i] = [epoch[i], ex_steps[i]];
-		      arr_number_steps[i] = [epoch[i], number_steps[i]];
-		      arr_suff_mins[i] = [epoch[i], suff_mins[i]];
-		      arr_cal[i] = [epoch[i], cal[i]];
-		      arr_bodyfat_quantity[i] = [epoch[i], bodyfat_quantity[i]];
-		      arr_suff_steps[i] = [epoch[i], suff_steps[i]];
-		      arr_ex[i] = [epoch[i], ex[i]];
-		      // xaxis format of y value.
-		      arr_datetime[i] = [epoch[i], year[i]+"/"+month[i]+"/"+day[i]];
+		      arr_datetime[i] = isoformat[i].replace("T", " ");
+		      arr_distance[i] = [arr_datetime[i], distance[i]];
+		      arr_walk_mins[i] = [arr_datetime[i], walk_mins[i]];
+		      arr_ex_steps[i] = [arr_datetime[i], ex_steps[i]];
+		      arr_number_steps[i] = [arr_datetime[i], number_steps[i]];
+		      arr_suff_mins[i] = [arr_datetime[i], suff_mins[i]];
+		      arr_cal[i] = [arr_datetime[i], cal[i]];
+		      arr_bodyfat_quantity[i] = [arr_datetime[i], bodyfat_quantity[i]];
+		      arr_suff_steps[i] = [arr_datetime[i], suff_steps[i]];
+		      arr_ex[i] = [arr_datetime[i], ex[i]];
 		  }
 		  
 		  $.jqplot.config.enablePlugins = true;
@@ -111,7 +110,7 @@ $(function() {
 			   ],
 			   { title:'歩数計',
 			     seriesDefault: {showMarker:false},
-			     series:[{},
+			     series:[{yaxis:'yaxis'},
 				     {yaxis:'y2axis'},
 				     {yaxis:'y3axis'},
 				     {yaxis:'y4axis'},
@@ -121,8 +120,15 @@ $(function() {
 				     {yaxis:'y8axis'},
 				     {yaxis:'y9axis'}
 				    ],
-	                     axesDefaults: {useSeriesColor: true, autoscale:true},
-	                     axes:{xaxis:{ticks:arr_datetime},
+	                     axesDefaults: {
+				 useSeriesColor: true,
+				 autoscale:true,
+				 tickOptions:{fontSize:'xx-small'},
+				 labelOptions:{fontSize:'xx-small'}
+			     },
+	                     axes:{xaxis:{renderer: $.jqplot.DateAxisRenderer,
+					  label:'日付(UTC)',
+					  tickOptions:{formatString:'%#m/%#d'}},
 				   yaxis:{label:'距離(km)'},
 				   y2axis:{label:'歩行時間(分)',tickOptions:{formatString:'%d'}},
 				   y3axis:{label:'EX歩数',tickOptions:{formatString:'%d'}},

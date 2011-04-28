@@ -77,18 +77,15 @@ $(function() {
 		  var arr_datetime = new Array(epoch.length);
 
 		  for(var i = 0; i < epoch.length; i++) {
-		      arr_body_age[i] = [epoch[i], body_age[i]];
-		      arr_weight[i] = [epoch[i], weight[i]];
-		      arr_bodyfat_percentage[i] = [epoch[i], bodyfat_percentage[i]];
-		      arr_skeltal_mascle_percentage[i] = [epoch[i], skeltal_mascle_percentage[i]];
-		      arr_bmi[i] = [epoch[i], bmi[i]];
-		      arr_bodyfat_lv[i] = [epoch[i], bodyfat_lv[i]];
-		      arr_basal_metabolism[i] = [epoch[i], basal_metabolism[i]];
-		      // xaxis format of y value.
-		      arr_datetime[i] = [epoch[i], year[i]+"/"+month[i]+"/"+day[i]];
-		      //arr_datetime[i] = [epoch[i], month[i]+"/"+day[i]];
+		      arr_datetime[i] = isoformat[i].replace("T", " ");
+		      arr_body_age[i] = [arr_datetime[i], body_age[i]];
+		      arr_weight[i] = [arr_datetime[i], weight[i]];
+		      arr_bodyfat_percentage[i] = [arr_datetime[i], bodyfat_percentage[i]];
+		      arr_skeltal_mascle_percentage[i] = [arr_datetime[i], skeltal_mascle_percentage[i]];
+		      arr_bmi[i] = [arr_datetime[i], bmi[i]];
+		      arr_bodyfat_lv[i] = [arr_datetime[i], bodyfat_lv[i]];
+		      arr_basal_metabolism[i] = [arr_datetime[i], basal_metabolism[i]];
 		  }
-		  
 		  $.jqplot.config.enablePlugins = true;
 		  $.jqplot('body_compost',
 			   [
@@ -102,7 +99,7 @@ $(function() {
 			   ],
 			   { title:'体組成計測',
 			     seriesDefault: {showMarker:false},
-			     series:[{},
+			     series:[{yaxis:'yaxis'},
 				     {yaxis:'y2axis'},
 				     {yaxis:'y3axis'},
 				     {yaxis:'y4axis'},
@@ -110,8 +107,15 @@ $(function() {
 				     {yaxis:'y6axis'},
 				     {yaxis:'y7axis'}
 				    ],
-	                     axesDefaults: {useSeriesColor: true, autoscale:true},
-	                     axes:{xaxis:{ticks:arr_datetime},
+	                     axesDefaults: {
+				 useSeriesColor: true,
+				 autoscale:true,
+				 tickOptions:{fontSize:'xx-small'},
+				 labelOptions:{fontSize:'xx-small'}
+			     },
+	                     axes:{xaxis:{renderer: $.jqplot.DateAxisRenderer,
+					  label:'日時(UTC)',
+					  tickOptions:{formatString:'%#m/%#d'}},
 				   yaxis:{label:'体年齢(歳)',tickOptions:{formatString:'%d'}},
 				   y2axis:{label:'体重(kg)'},
 				   y3axis:{label:'体脂肪率(%)'},

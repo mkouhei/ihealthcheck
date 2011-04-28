@@ -98,28 +98,28 @@ $(function() {
 		  $.jqplot.config.enablePlugins = true;
 		  $.jqplot('pedometer',
 			   [
+			       arr_number_steps,
+			       arr_suff_steps,
+			       arr_ex_steps,
 			       arr_distance,
 			       arr_walk_mins,
-			       arr_ex_steps,
-			       arr_number_steps,
 			       arr_suff_mins,
+			       arr_ex,
 			       arr_cal,
-			       arr_bodyfat_quantity,
-			       arr_suff_steps,
-			       arr_ex
+			       arr_bodyfat_quantity
 			   ],
 			   { legend:{show:true, location:'e'},
 			     title:'歩数計',
 			     seriesDefault: {showMarker:true},
-			     series:[{label:'距離', yaxis:'yaxis'},
-				     {label:'歩行時間', yaxis:'y2axis'},
+			     series:[{label:'歩数', yaxis:'yaxis'},
+				     {label:'しっかり歩数', yaxis:'y2axis'},
 				     {label:'EX歩数', yaxis:'y3axis'},
-				     {label:'歩数', yaxis:'y4axis'},
-				     {label:'しっかり歩行時間', yaxis:'y5axis'},
-				     {label:'消費カロリー', yaxis:'y6axis'},
-				     {label:'燃焼脂肪量', yaxis:'y7axis'},
-				     {label:'しっかり歩数', yaxis:'y8axis'},
-				     {label:'EX量', yaxis:'y9axis'}
+				     {label:'距離', yaxis:'y4axis'},
+				     {label:'歩行時間', yaxis:'y5axis'},
+				     {label:'しっかり歩行時間', yaxis:'y6axis'},
+				     {label:'EX量', yaxis:'y7axis'},
+				     {label:'消費カロリー', yaxis:'y8axis'},
+				     {label:'燃焼脂肪量', yaxis:'y9axis'}
 				    ],
 	                     axesDefaults: {
 				 useSeriesColor: true,
@@ -137,15 +137,15 @@ $(function() {
 					  },
 					  label:'日付(UTC)'
 					 },
-				   yaxis:{label:'距離(km)'},
-				   y2axis:{label:'歩行時間(分)',tickOptions:{formatString:'%d'}},
+				   yaxis:{label:'歩数',tickOptions:{formatString:'%d'}},
+				   y2axis:{label:'しっかり歩数',tickOptions:{formatString:'%d'}},
 				   y3axis:{label:'EX歩数',tickOptions:{formatString:'%d'}},
-				   y4axis:{label:'歩数',tickOptions:{formatString:'%d'}},
-				   y5axis:{label:'しっかり歩行時間(分)',tickOptions:{formatString:'%d'}},
-				   y6axis:{label:'消費カロリー(kcal)',tickOptions:{formatString:'%d'}},
-				   y7axis:{label:'燃焼脂肪量(g)'},
-				   y8axis:{label:'しっかり歩数',tickOptions:{formatString:'%d'}},
-				   y9axis:{label:'EX量(Ex)'}
+				   y4axis:{label:'距離(km)'},
+				   y5axis:{label:'歩行時間(分)',tickOptions:{formatString:'%d'}},
+				   y6axis:{label:'しっかり歩行時間(分)',tickOptions:{formatString:'%d'}},
+				   y7axis:{label:'EX量(Ex)'},
+				   y8axis:{label:'消費カロリー(kcal)',tickOptions:{formatString:'%d'}},
+				   y9axis:{label:'燃焼脂肪量(g)'}
 				  },
 			     cursor: {
 				 showVerticalLine: true,

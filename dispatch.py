@@ -1,4 +1,3 @@
-# Device Infomation registration pages.
 # -*- coding: utf-8 -*-
 
 import os

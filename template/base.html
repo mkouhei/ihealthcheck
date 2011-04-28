@@ -13,7 +13,9 @@
     <div data-role="page">
       <div data-role="header">
 	<h1>{% block h1 %}{% endblock %}</h1>
+	{% if url %}
 	<a href="{{url}}" rel="external" class="ui-btn-right" data-role="button" >{{url_linktext}}</a>
+	{% endif %}
       </div>
       <div data-role="content">
 	{% block content %}{% endblock %}

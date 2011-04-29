@@ -96,31 +96,106 @@ $(function() {
 		  }
 		  
 		  $.jqplot.config.enablePlugins = true;
+		  // 歩数, しっかり歩数, EX歩数
 		  $.jqplot('pedometer',
+			   [arr_suff_steps,arr_ex_steps,arr_number_steps],
+			   { legend:{show:true},
+			     title:'歩数',
+			     stackSeries:true,
+			     seriesDefaults: {showMarker:false,fill:true,fillAlpha:0.8},
+			     series:[{label:'しっかり歩数', yaxis:'y3axis'},
+				     {label:'EX歩数', yaxis:'y2axis'},
+				     {label:'歩数', yaxis:'yaxis'},
+			    ],
+	                     axesDefaults: {
+				 useSeriesColor: false,
+				 tickOptions:{fontSize:'xx-small'},
+				 labelOptions:{fontSize:'xx-small'},
+				 showTicks:false
+			     },
+	                     axes:{xaxis:{renderer: $.jqplot.DateAxisRenderer,
+					  tickInterval:'3 day',
+					  rendererOptions:{tickRenderer:$.jqplot.CanvasAxisTickRenderer},
+					  tickOptions:{
+					      formatString:'%#m/%#d',
+					      fontSize:'10px',
+					      fontFamily:'Tahoma',
+					      angle:-30
+					  },
+					  label:'日付(UTC)'
+					 },
+				   y3axis:{tickOptions:{formatString:'%d'},min:0,max:50000},
+				   y2axis:{tickOptions:{formatString:'%d'},min:0,max:50000},
+				   yaxis:{showTicks:true,tickOptions:{formatString:'%d'},min:0,max:50000}
+				  },
+			     cursor: {
+				 showVerticalLine: true,
+				 showHorizontalLine: false,
+				 showCursorLegend: false,
+				 showTooltip: false
+			     },
+			     highlighter: {show:true}
+			   });
+
+		  // 距離, 歩行時間, しっかり歩行時間
+		  $.jqplot('pedometer2',
 			   [
-			       arr_number_steps,
-			       arr_suff_steps,
-			       arr_ex_steps,
 			       arr_distance,
 			       arr_walk_mins,
-			       arr_suff_mins,
+			       arr_suff_mins
+			   ],
+			   { legend:{show:true},
+			     title:'距離・歩行時間',
+			     stackSeries:false,
+			     seriesDefaults: {showMarker:false,fill:true,fillAlpha:0.8},
+			     series:[{label:'距離', yaxis:'yaxis',fill:false},
+				     {label:'歩行時間', yaxis:'y2axis'},
+				     {label:'しっかり歩行時間', yaxis:'y3axis'}
+				    ],
+	                     axesDefaults: {
+				 useSeriesColor: false,
+				 autoscale:true,
+				 tickOptions:{fontSize:'xx-small'},
+				 labelOptions:{fontSize:'xx-small'}
+			     },
+	                     axes:{xaxis:{renderer: $.jqplot.DateAxisRenderer,
+					  tickInterval:'3 day',
+					  rendererOptions:{tickRenderer:$.jqplot.CanvasAxisTickRenderer},
+					  tickOptions:{
+					      formatString:'%#m/%#d',
+					      fontSize:'10px',
+					      fontFamily:'Tahoma',
+					      angle:-30
+					  },
+					  label:'日付(UTC)'
+					 },
+				   yaxis:{label:'距離(km)',min:0},
+				   y2axis:{label:'歩行時間(分)',tickOptions:{formatString:'%d'},min:0,max:500},
+				   y3axis:{showTicks:false,tickOptions:{formatString:'%d'},min:0,max:500}
+				  },
+			     cursor: {
+				 showVerticalLine: true,
+				 showHorizontalLine: false,
+				 showCursorLegend: false,
+				 showTooltip: false
+			     },
+			     highlighter: {show:true}
+			   });
+
+		  // EX量, 消費カロリー, 燃焼脂肪量
+		  $.jqplot('pedometer3',
+			   [
 			       arr_ex,
 			       arr_cal,
 			       arr_bodyfat_quantity
 			   ],
 			   { legend:{show:false},
-			     title:'歩数計',
+			     title:'EX量、消費カロリー、燃焼脂肪量',
 			     stackSeries:true,
 			     seriesDefaults: {showMarker:false,fill:false},
-			     series:[{label:'歩数', yaxis:'yaxis',fill:true},
-				     {label:'しっかり歩数', yaxis:'y2axis',fill:true},
-				     {label:'EX歩数', yaxis:'y3axis',fill:true},
-				     {label:'距離', yaxis:'y4axis'},
-				     {label:'歩行時間', yaxis:'y5axis'},
-				     {label:'しっかり歩行時間', yaxis:'y6axis'},
-				     {label:'EX量', yaxis:'y7axis'},
-				     {label:'消費カロリー', yaxis:'y8axis'},
-				     {label:'燃焼脂肪量', yaxis:'y9axis'}
+			     series:[{label:'EX量', yaxis:'yaxis'},
+				     {label:'消費カロリー', yaxis:'y2axis'},
+				     {label:'燃焼脂肪量', yaxis:'y3axis'}
 				    ],
 	                     axesDefaults: {
 				 useSeriesColor: true,
@@ -139,15 +214,9 @@ $(function() {
 					  },
 					  label:'日付(UTC)'
 					 },
-				   yaxis:{label:'歩数',tickOptions:{formatString:'%d'}},
-				   y2axis:{label:'しっかり歩数',tickOptions:{formatString:'%d'}},
-				   y3axis:{label:'EX歩数',tickOptions:{formatString:'%d'}},
-				   y4axis:{label:'距離(km)'},
-				   y5axis:{label:'歩行時間(分)',tickOptions:{formatString:'%d'}},
-				   y6axis:{label:'しっかり歩行時間(分)',tickOptions:{formatString:'%d'}},
-				   y7axis:{label:'EX量(Ex)'},
-				   y8axis:{label:'消費カロリー(kcal)',tickOptions:{formatString:'%d'}},
-				   y9axis:{label:'燃焼脂肪量(g)'}
+				   yaxis:{label:'EX量(Ex)',min:0},
+				   y2axis:{label:'消費カロリー(kcal)',tickOptions:{formatString:'%d'},min:0},
+				   y3axis:{label:'燃焼脂肪量(g)',min:0}
 				  },
 			     cursor: {
 				 showVerticalLine: true,

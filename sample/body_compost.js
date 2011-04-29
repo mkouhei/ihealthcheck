@@ -87,26 +87,21 @@ $(function() {
 		      arr_basal_metabolism[i] = [arr_datetime[i], basal_metabolism[i]];
 		  }
 		  $.jqplot.config.enablePlugins = true;
+		  // 体重, 体脂肪率, 骨格筋率, BMI
 		  $.jqplot('body_compost',
 			   [
-			       arr_body_age,
 			       arr_weight,
 			       arr_bodyfat_percentage,
 			       arr_skeltal_mascle_percentage,
-			       arr_bmi,
-			       arr_bodyfat_lv,
-			       arr_basal_metabolism
+			       arr_bmi
 			   ],
 			   { legend:{show:false},
 			     title:'体組成計測',
 			     seriesDefaults: {showMarker:false},
-			     series:[{label:'体年齢', yaxis:'yaxis'},
-				     {label:'体重', yaxis:'y2axis'},
-				     {label:'体脂肪率', yaxis:'y3axis'},
-				     {label:'骨格筋率', yaxis:'y4axis'},
-				     {label:'BMI', yaxis:'y5axis'},
-				     {label:'体脂肪レベル', yaxis:'y6axis'},
-				     {label:'基礎代謝', yaxis:'y7axis'}
+			     series:[{label:'体重', yaxis:'yaxis',trendline:{show:false}},
+				     {label:'体脂肪率', yaxis:'y2axis',trendline:{show:false}},
+ 				     {label:'骨格筋率', yaxis:'y3axis',trendline:{show:false}},
+				     {label:'BMI', yaxis:'y4axis',trendline:{show:false}}
 				    ],
 	                     axesDefaults: {
 				 useSeriesColor: true,
@@ -125,13 +120,54 @@ $(function() {
 					  },
 					  label:'日時(UTC)',
 					 },
-				   yaxis:{label:'体年齢(歳)',tickOptions:{formatString:'%d',showGridline:false}},
-				   y2axis:{label:'体重(kg)'},
-				   y3axis:{label:'体脂肪率(%)'},
-				   y4axis:{label:'骨格筋率(%)'},
-				   y5axis:{label:'BMI'},
-				   y6axis:{label:'体脂肪レベル',tickOptions:{formatString:'%d'}},
-				   y7axis:{label:'基礎代謝(kcal)',tickOptions:{formatString:'%d'}}
+				   yaxis:{label:'体重(kg)'},
+				   y2axis:{label:'体脂肪率(%)'},
+				   y3axis:{label:'骨格筋率(%)'},
+				   y4axis:{label:'BMI'}
+				  },
+			     cursor: {
+				 showVerticalLine: true,
+				 showHorizontalLine: false,
+				 showCursorLegend: false,
+				 showTooltip: false
+			     },
+			     highlighter: {show: true }
+			   });
+
+		  // 体年齢, 体脂肪レベル, 基礎代謝
+		  $.jqplot('body_compost2',
+			   [
+			       arr_body_age,
+			       arr_bodyfat_lv,
+			       arr_basal_metabolism
+			   ],
+			   { legend:{show:false},
+			     title:'体組成計測',
+			     seriesDefaults: {showMarker:false,trendline:{show:false}},
+			     series:[{label:'体年齢', yaxis:'yaxis'},
+				     {label:'体脂肪レベル', yaxis:'y2axis'},
+				     {label:'基礎代謝', yaxis:'y3axis'}
+				    ],
+	                     axesDefaults: {
+				 useSeriesColor: true,
+				 autoscale:true,
+				 tickOptions:{fontSize:'xx-small'},
+				 labelOptions:{fontSize:'xx-small'}
+			     },
+	                     axes:{xaxis:{renderer: $.jqplot.DateAxisRenderer,
+					  tickInterval: '3 day',
+					  rendererOptions:{tickRenderer:$.jqplot.CanvasAxisTickRenderer},
+					  tickOptions:{
+					      formatString:'%#m/%#d',
+					      fontSize:'10px',
+					      fontFamily:'Tahoma',
+					      angle:-30
+					  },
+					  label:'日時(UTC)',
+					 },
+				   yaxis:{label:'体年齢(歳)',tickOptions:{formatString:'%d'}},
+				   y2axis:{label:'体脂肪レベル',tickOptions:{formatString:'%d'}},
+				   y3axis:{label:'基礎代謝(kcal)',tickOptions:{formatString:'%d'}}
 				  },
 			     cursor: {
 				 showVerticalLine: true,

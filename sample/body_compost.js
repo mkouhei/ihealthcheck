@@ -96,7 +96,7 @@ $(function() {
 			       arr_bmi
 			   ],
 			   { legend:{show:false},
-			     title:'体組成計測',
+			     title:'体重、体脂肪率、骨格筋率、BMI',
 			     seriesDefaults: {showMarker:false},
 			     series:[{label:'体重', yaxis:'yaxis',trendline:{show:false}},
 				     {label:'体脂肪率', yaxis:'y2axis',trendline:{show:false}},
@@ -142,7 +142,7 @@ $(function() {
 			       arr_basal_metabolism
 			   ],
 			   { legend:{show:false},
-			     title:'体組成計測',
+			     title:'体年齢、体脂肪レベル、基礎代謝',
 			     seriesDefaults: {showMarker:false,trendline:{show:false}},
 			     series:[{label:'体年齢', yaxis:'yaxis'},
 				     {label:'体脂肪レベル', yaxis:'y2axis'},

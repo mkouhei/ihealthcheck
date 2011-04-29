@@ -115,7 +115,7 @@ $(function() {
 				 labelOptions:{fontSize:'xx-small'}
 			     },
 	                     axes:{xaxis:{renderer: $.jqplot.DateAxisRenderer,
-					  tickInterval: '1 day',
+					  tickInterval: '3 day',
 					  rendererOptions:{tickRenderer:$.jqplot.CanvasAxisTickRenderer},
 					  tickOptions:{
 					      formatString:'%#m/%#d',

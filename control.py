@@ -51,7 +51,7 @@ class ListMeasurement(webapp.RequestHandler):
 class ListBodyCompost(ListMeasurement):
     def __init__(self):
         ListMeasurement.__init__(self)
-        self.key = "listBodyCompost"
+        self.key = "listBodyCompost" + self.user.nickname()
         self.template_path = "template/body_compost_list.html"
 
     def renderList(self):
@@ -63,7 +63,7 @@ class ListBodyCompost(ListMeasurement):
 class ListPedometer(ListMeasurement):
     def __init__(self):
         ListMeasurement.__init__(self)
-        self.key = "listPedometer"
+        self.key = "listPedometer" + self.user.nickname()
         self.template_path = "template/pedometer_list.html"
         
     def renderList(self):

@@ -14,6 +14,7 @@ class DataApi(webapp.RequestHandler):
 
     def get(self, user):
         user = cgi.escape(user,True)
+        self.key = self.setKey(user)
         json_data = self.getJson(user)
         stats = memcache.get_stats()
         self.response.headers['Content-Type']='application/json'
@@ -29,6 +30,9 @@ class DataApi(webapp.RequestHandler):
                 logging.error("Memcache set failed.")
             return json_data
 
+    def setKey(self, user):
+        key = self.key + user
+        return key
 
 class DataBodyCompost(DataApi):
     def __init__(self):

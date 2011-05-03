@@ -1,0 +1,11 @@
+--- json.py.org	2008-04-10 07:31:02.000000000 +0900
++++ json.py	2011-05-03 11:31:21.000000000 +0900
+@@ -48,7 +48,7 @@
+     if hasattr(obj, '__json__'):
+       return getattr(obj, '__json__')()
+ 
+-    if isinstance(obj, db.GqlQuery):
++    if isinstance(obj, db.GqlQuery) or isinstance(obj, db.Query):
+       return list(obj)
+ 
+     elif isinstance(obj, db.Model):

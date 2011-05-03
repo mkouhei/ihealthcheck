@@ -1,3 +1,7 @@
 *~
 *.pyc
 index.yaml
+*.min.*
+static/images/
+sample/plugins/
+json.py

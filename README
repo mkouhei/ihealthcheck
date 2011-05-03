@@ -9,12 +9,32 @@ Feature:
  - You list registered data.
  - You retrieve registered data in JSON format.
  - You see graph of data.
+
+Setting:
+ - jQuery (>= 1.5.2)
+        http://docs.jquery.com/Downloading_jQuery
+     After extract files, copy jquery-1.x.x.min.js to static/ directory.
+
+ - jQuery Mobile (>= 1.0 a4.1)
+        http://jquerymobile.com/download/
+     After extract files, copy jquery.mobile-1.x.x.min.{js,css} & images/
+     directory to static/ directory.
+
+ - jqPlot (>= 1.0.0a_r701)
+        https://bitbucket.org/cleonello/jqplot/downloads/
+     After extract files, copy dist/*.min.{js,css} files & 
+     dist/plugins/*.min.js files to sample/ directory.
+
+ - GAE samples geochat/json.py (>= revision 136)
+        http://google-app-engine-samples.googlecode.com/svn/trunk/geochat/json.py
+     After copy json.py to root direcory, execute this command.
+     patch -p0 < apply json.py-extend-db.Query.patch
 	
 JSON API:
  - Body composition data
-   	http://<yourappid>.appspot.com/api/bodyCompost/<username>
+        http://<yourappid>.appspot.com/api/bodyCompost/<username>
  - Pedometer data	  
-   	http://<yourappid>.appspot.com/api/pedometer/<username>
+        http://<yourappid>.appspot.com/api/pedometer/<username>
 
 Sample Graph:
  This function is implemented by jqplot.
@@ -24,11 +44,11 @@ Sample Graph:
  You access next URI to see samplegraph.
 
  - Body composition data
-   	http://<yourappid>.appspot.com/sample/body_compost.html
+        http://<yourappid>.appspot.com/sample/body_compost.html
  - Pedometer data
-   	http://<yourappid>.appspot.com/sample/pedometer.html
+        http://<yourappid>.appspot.com/sample/pedometer.html
 
 Warning:
  - JSON API & Graph can be accessed by anyone who knows the username.
 
- -- Kouhei Maeda <mkouhei at palmtb.net>, Mon, 26 Apr 2011 12:34:47 +0900
+ -- Kouhei Maeda <mkouhei at palmtb.net>, Tue,  3 May 2011 11:56:37 +0900

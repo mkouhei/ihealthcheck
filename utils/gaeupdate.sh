@@ -6,6 +6,6 @@ git branch | egrep '\* release' -q || exit 1
 
 sed -i 's/debug=True/debug=False/' dispatch.py
 
-appcfg.py -e $EMAIL update .
+appcfg.py $EMAIL update .
 
 git checkout dispatch.py

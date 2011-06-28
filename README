@@ -28,7 +28,8 @@ Setting:
  - GAE samples geochat/json.py (>= revision 136)
         http://google-app-engine-samples.googlecode.com/svn/trunk/geochat/json.py
      After copy json.py to root direcory, execute this command.
-     patch -p0 < apply json.py-extend-db.Query.patch
+     
+	patch -p0 < json.py-extend-db.Query.patch
 	
 JSON API:
  - Body composition data
